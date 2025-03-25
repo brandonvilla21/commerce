@@ -1,27 +1,31 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-export default function LogoIcon(props: React.ComponentProps<'svg'>) {
+interface LogoIconProps extends React.ComponentProps<"svg"> {
+  size?: number;
+}
+
+export default function LogoIcon({
+  size = 24,
+  className,
+  ...props
+}: LogoIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       aria-label={`${process.env.SITE_NAME} logo`}
       viewBox="0 0 24 24"
+      width={size}
+      height={size}
       {...props}
-      className={clsx('h-4 w-4 fill-black dark:fill-white', props.className)}
+      className={clsx("fill-black dark:fill-white", className)}
     >
       <path
-        d="M5 4L12 20L19 4"
+        d="M17 5L9 5C7 5 5 7 7 9L17 15C19 17 17 19 15 19H7"
         stroke="currentColor"
         fill="none"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
-      <path
-        d="M3 18L7 18M17 18L21 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
       />
     </svg>
   );

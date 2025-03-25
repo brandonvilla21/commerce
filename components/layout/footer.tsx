@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import FooterMenu from 'components/layout/footer-menu';
 import LogoSquare from 'components/logo-square';
+import LogoTitle from 'components/logo-title';
 import { getMenu } from 'lib/shopify';
 import { Suspense } from 'react';
 
@@ -20,7 +21,7 @@ export default async function Footer() {
         <div>
           <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
             <LogoSquare size="sm" />
-            <span className="uppercase">{SITE_NAME}</span>
+            <LogoTitle small />
           </Link>
         </div>
         <Suspense
@@ -48,7 +49,7 @@ export default async function Footer() {
           Socials
           <p className="md:ml-auto">
             <a href="https://vercel.com" className="text-black dark:text-white">
-              Created by Stryve
+              Creado por Suplementa
             </a>
           </p>
         </div>
