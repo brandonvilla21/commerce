@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const slides = [
   {
     id: 1,
-    image: "https://placehold.co/1920x1080/333/FFF/webp?text=Promo+1",
+    gradient: "bg-gradient-to-r from-blue-600 to-purple-600",
     title: "Imprescindibles",
     description: "Los suplementos esenciales que no pueden faltar en tu rutina",
     cta: "Comprar ahora",
@@ -15,15 +14,15 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://placehold.co/1920x1080/444/FFF/webp?text=Promo+2",
+    gradient: "bg-gradient-to-r from-rose-500 to-orange-500",
     title: "Mejora Tu Rendimiento",
     description: "Explora nuestros nuevos suplementos para resultados máximos",
     cta: "Ver Novedades",
-    path: "/search?sort=trending-desc",
+    path: "/search?sort=latest-desc",
   },
   {
     id: 3,
-    image: "https://placehold.co/1920x1080/555/FFF/webp?text=Promo+3",
+    gradient: "bg-gradient-to-r from-indigo-600 to-pink-500",
     title: "Energía y Rendimiento",
     description: "Suplementos que impulsan cada entrenamiento al máximo",
     cta: "Potencia tu rutina",
@@ -68,17 +67,10 @@ export default function HeroCarousel() {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className="relative w-full h-full flex-shrink-0"
+              className={`relative w-full h-full flex-shrink-0 ${slide.gradient}`}
             >
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
               {/* Content Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white p-4">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                   {slide.title}
                 </h2>
@@ -87,7 +79,7 @@ export default function HeroCarousel() {
                 </p>
                 <Link
                   href={slide.path}
-                  className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
+                  className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   {slide.cta}
                 </Link>
