@@ -8,7 +8,19 @@ export default function Search() {
   const searchParams = useSearchParams();
 
   return (
-    <Form action="/search" className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
+    <Form 
+      action="/search" 
+      className="w-max-[550px] relative w-full lg:w-80 xl:w-full"
+      onSubmit={(e) => {
+        try {
+          const formData = new FormData(e.currentTarget);
+          const searchQuery = formData.get('q');
+          console.log('Search submitted:', searchQuery);
+        } catch (error) {
+          console.error('Error submitting search:', error);
+        }
+      }}
+    >
       <input
         key={searchParams?.get('q')}
         type="text"
