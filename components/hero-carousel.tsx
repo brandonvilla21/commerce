@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const slides = [
@@ -10,6 +11,7 @@ const slides = [
     title: "Imprescindibles",
     description: "Los suplementos esenciales que no pueden faltar en tu rutina",
     cta: "Comprar ahora",
+    path: "/search/proteinas",
   },
   {
     id: 2,
@@ -17,6 +19,7 @@ const slides = [
     title: "Mejora Tu Rendimiento",
     description: "Explora nuestros nuevos suplementos para resultados máximos",
     cta: "Ver Novedades",
+    path: "/search?sort=trending-desc",
   },
   {
     id: 3,
@@ -24,6 +27,7 @@ const slides = [
     title: "Energía y Rendimiento",
     description: "Suplementos que impulsan cada entrenamiento al máximo",
     cta: "Potencia tu rutina",
+    path: "/search/pre-entrenos",
   },
 ];
 
@@ -78,10 +82,15 @@ export default function HeroCarousel() {
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                   {slide.title}
                 </h2>
-                <p className="text-xl md:text-2xl mb-8">{slide.description}</p>
-                <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
+                <p className="text-xl md:text-2xl mb-8 text-center md:text-left">
+                  {slide.description}
+                </p>
+                <Link
+                  href={slide.path}
+                  className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
+                >
                   {slide.cta}
-                </button>
+                </Link>
               </div>
             </div>
           ))}
