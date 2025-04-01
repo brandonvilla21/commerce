@@ -8,7 +8,7 @@ import { ProductProvider } from 'components/product/product-context';
 import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
-import { Image } from 'lib/shopify/types';
+import { Image, Product } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
@@ -16,8 +16,13 @@ export async function generateMetadata(props: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const product = await getProduct(params.handle);
-
+  let product: Product | undefined;
+  try {
+    product = await getProduct(params.handle);
+  } catch (error) {
+    console.error('here the error')
+    console.error(error);
+  }
   if (!product) return notFound();
 
   const { url, width, height, altText: alt } = product.featuredImage || {};
