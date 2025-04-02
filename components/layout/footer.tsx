@@ -48,8 +48,8 @@ export default async function Footer() {
           <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
           Socials
           <p className="md:ml-auto">
-            <a href="https://vercel.com" className="text-black dark:text-white">
-              Creado por Suplementa
+            <a href="https://suplementa.mx" className="text-black dark:text-white">
+              Creado por SuplementaMX
             </a>
           </p>
         </div>
