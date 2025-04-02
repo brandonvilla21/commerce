@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -67,10 +68,21 @@ export default function HeroCarousel() {
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`relative w-full h-full flex-shrink-0 ${slide.gradient}`}
+              className={`relative w-full h-full flex-shrink-0`}
             >
+              {/* Background Image */}
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  src={`/images/${index + 1}.svg`}
+                  alt={`Banner ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+              
               {/* Content Overlay */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4">
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 bg-black/30">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                   {slide.title}
                 </h2>
