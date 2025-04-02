@@ -1,6 +1,6 @@
 "use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -73,14 +73,21 @@ export default function HeroCarousel() {
               {/* Background Image */}
               <div className="absolute inset-0 w-full h-full">
                 <Image
-                  src={`/images/${index + 1}.svg`}
+                  src={`/images/${index + 1}.webp`}
                   alt={`Banner ${index + 1}`}
                   fill
-                  className="object-cover"
+                  sizes="100vw"
+                  quality={85}
+                  loading={index === 0 ? "eager" : "lazy"}
                   priority={index === 0}
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+                    '<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
+                  ).toString("base64")}`}
                 />
               </div>
-              
+
               {/* Content Overlay */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 bg-black/30">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
@@ -90,7 +97,9 @@ export default function HeroCarousel() {
                   {slide.description}
                 </p>
                 <Link
+                  key={slide.id}
                   href={slide.path}
+                  prefetch={true}
                   className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors shadow-lg hover:shadow-xl transition-shadow duration-300"
                 >
                   {slide.cta}
